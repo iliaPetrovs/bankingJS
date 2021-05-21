@@ -25,24 +25,52 @@ const login = async (targetUrl) => {
 const banking = async () => {
   try {
     const accessToken = await auth0.getTokenSilently();
-    var btn = document.getElementById("appendThis");
+    console.log(accessToken);
+    console.log(auth0.getUser());
+    var ul = document.getElementById("appendThis");
     var div = document.createElement("div");
     const response = fetch("http://localhost:8080/banking/", {
       method: "GET",
       crossDomain: true,
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik9BeUh4NDdmaHgzS3VMM0Jzc2NNdyJ9.eyJpc3MiOiJodHRwczovL2lsaWFwZXRyb3ZzLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiIwOUNqYWFVandBTWdkV3diSGdzek4zWmV5OUwzRjR6cUBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9iYW5raW5nIiwiaWF0IjoxNjIxNjAyNzI1LCJleHAiOjE2MjE2ODkxMjUsImF6cCI6IjA5Q2phYVVqd0FNZ2RXd2JIZ3N6TjNaZXk5TDNGNHpxIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.a6o1qpeT_qjIl6DFDpMDqeuL2rPrVRN3Njg7FIfT4DbFIp0Ehy4hMkJA6eigJytpbQs8McXmM55Epmj_QF6az9R8OicYAd71A4Ju3ODCFEm8-EVnepXxhVbnvHedFHnfxpYamyMxUlXd1--e-mrGJM-aIYGLKp442gf8RLVT29Nai3ZVeu9Na4hG06MYloOdb8DnJPCNmZKbNzkvlUgA1mAqM1bAUtuGH1NiXNuHZ7_zzxW6HaXeiOtB-TeZ-aeTqdQ9bRFrckMf0DayOQKxepuR6Sd8mtEH87kCefSF78BHcVdFJJ9cxuFtVur1za0tPo0n8AqVkDWiO6SjeqtWVA`,
       },
     })
       .then((response) => response.clone().json())
       .then((data) => {
+        console.log(data);
         div.innerHTML = JSON.stringify(data);
-        btn.appendChild(div);
+        ul.appendChild(div);
       });
   } catch (exception) {
     return exception;
   }
 };
+
+const moneySend = (e) => {
+  e.preventDefault();
+}
+
+const viewBalance = async () => {
+  const accessToken = await auth0.getTokenSilently();
+  console.log(accessToken);
+  var ul = document.getElementById("view-balance");
+  var div = document.createElement("div");
+  const response = fetch("http://localhost:8080/banking/", {
+    method: "GET",
+    crossDomain: true,
+    headers: {
+      Authorization: `Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik9BeUh4NDdmaHgzS3VMM0Jzc2NNdyJ9.eyJpc3MiOiJodHRwczovL2lsaWFwZXRyb3ZzLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiIwOUNqYWFVandBTWdkV3diSGdzek4zWmV5OUwzRjR6cUBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9iYW5raW5nIiwiaWF0IjoxNjIxNjAyNzI1LCJleHAiOjE2MjE2ODkxMjUsImF6cCI6IjA5Q2phYVVqd0FNZ2RXd2JIZ3N6TjNaZXk5TDNGNHpxIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.a6o1qpeT_qjIl6DFDpMDqeuL2rPrVRN3Njg7FIfT4DbFIp0Ehy4hMkJA6eigJytpbQs8McXmM55Epmj_QF6az9R8OicYAd71A4Ju3ODCFEm8-EVnepXxhVbnvHedFHnfxpYamyMxUlXd1--e-mrGJM-aIYGLKp442gf8RLVT29Nai3ZVeu9Na4hG06MYloOdb8DnJPCNmZKbNzkvlUgA1mAqM1bAUtuGH1NiXNuHZ7_zzxW6HaXeiOtB-TeZ-aeTqdQ9bRFrckMf0DayOQKxepuR6Sd8mtEH87kCefSF78BHcVdFJJ9cxuFtVur1za0tPo0n8AqVkDWiO6SjeqtWVA`,
+    },
+  }).then((response) => response.clone().json())
+  .then((data) => {
+    console.log(data);
+    div.innerHTML = JSON.stringify(data);
+    ul.appendChild(div);
+  })
+  // div.innerHTML = "This is a balance";
+  // ul.appendChild(div);
+}
 
 /**
  * Executes the logout flow

@@ -159,8 +159,36 @@
       </div>
 
       <div id="main-content" class="container mt-5 flex-grow-1">
-        <div id="content-home" class="page">
-          <div class="text-center hero">
+         <div id="content-home" class="page">
+           <div class="wrapper auth-visible hidden">
+             <div class="main-container">
+               <ul class="bank-items">
+                 <li id="view-balance" class="view-balance">
+                   <h4>Balance</h4>
+                   <button onclick="viewBalance()">View</button>
+                 </li>
+                 <li>
+                   <form class="money-form" action="submit">
+                     <h4>Send Money</h4>
+                     <div class="label-wrap">
+                      <label for="to">To:</label>
+                      <input type="text" name="to">
+                     </div>
+                     <div class="label-wrap">
+                      <label for="amount">Amount:</label>
+                      <input type="text" name="amount">
+                     </div>
+                     <button onclick="moneySend()" class="money-send">Send</button>
+                   </form>
+                 </li>
+                 <li>
+                   <h4>Standing orders</h4>
+                   <p>Test</p>
+                 </li>
+               </ul>
+             </div>
+           </div>
+          <!-- <div class="text-center hero">
             <img
               class="mb-3 app-logo"
               src="/images/logo.png"
@@ -173,8 +201,8 @@
               This is a sample application that demonstrates an authentication
               flow for an SPA, using plain JavaScript
             </p>
-          </div>
-
+          </div> -->
+<!-- 
           <div class="next-steps">
             <h2 class="my-5 text-center">What can I do next?</h2>
 
@@ -210,8 +238,7 @@
                   authenticator apps, SMS, and DUO Security are supported.
                 </p>
               </div>
-            </div>
-
+            </div> 
             <div class="row">
               <div class="col-md-5 mb-4">
                 <h6 class="mb-3">
@@ -242,8 +269,8 @@
                   customize and extend Auth0's capabilities.
                 </p>
               </div>
-            </div>
-          </div>
+            </div> 
+          </div> -->
         </div>
 
         <div class="page" id="content-profile">
